@@ -11,6 +11,7 @@
                                 <img src="{{$post->images->first()->path}}" alt="{{$post->title}}" />
                             </figure>
                         @elseif($post->images->count() > 1)
+
                         <div class="carousel rounded-box">
                             @foreach ($post->images as $image)
                                 <div class="carousel-item w-full">
