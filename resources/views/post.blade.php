@@ -23,7 +23,27 @@
                 <p class="text-gray-400">{{ $post->created_at->diffForHumans() }}</p>
             </div>
         </div>
-        @foreach($post->comments as $comment)
+        <div class="card bg-base-200 shadow-xl min-h-full mt-3">
+            <div class="card-body">
+                <form action="{{route('comment', ['post' => $post])}}" method="POST">
+                    @csrf
+                    <label class="form-control">
+                        <div class="label">
+                          <span class="label-text">Comment</span>
+                        </div>
+                        <textarea name="body" class="textarea textarea-bordered h-24" placeholder="Content here...">{{old('body')}}</textarea>
+                        @error('body')
+                            <div class="label">
+                                <span class="label-text-alt text-error">{{$message}}</span>
+                            </div>
+                        @enderror
+                      </label>
+                      <input type="submit" class="btn btn-primary mt-2" value="Comment">
+                </form>
+            </div>
+        </div>
+
+        @foreach($post->comments()->latest()->get() as $comment)
             <div class="card bg-base-200 shadow-xl min-h-full mt-3">
                 <div class="card-body">
                     <p>{{ $comment->body }}</p>
