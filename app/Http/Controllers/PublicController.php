@@ -11,4 +11,8 @@ class PublicController extends Controller
         $posts = Post::latest()->simplePaginate();
         return view('welcome', compact('posts'));
     }
+
+    public function post(Post $post){
+        return view('post', compact('post'));
+    }
 }
