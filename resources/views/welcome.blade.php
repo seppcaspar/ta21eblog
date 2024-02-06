@@ -27,7 +27,20 @@
                             <p class="text-gray-400">{{$post->user->name}}</p>
                             <p class="text-gray-400">{{$post->created_at->diffForHumans()}}</p>
                             <p class="text-gray-400"><b>Comments:</b> {{$post->comments()->count()}}</p>
+                            <p class="text-gray-400"><b>Likes:</b> {{$post->likes()->count()}}</p>
+                            <div>
+                                @foreach($post->tags as $tag)
+                                    <a href="{{route('tag', ['tag' => $tag])}}">
+                                        <div class="badge badge-outline">{{$tag->name}}</div>
+                                    </a>
+                                @endforeach
+                            </div>
                             <div class="card-actions justify-end">
+                                @if($post->authHasLiked)
+                                    <a href="{{route('like', ['post' => $post])}}" class="btn btn-error">Unlike</a>
+                                @else
+                                    <a href="{{route('like', ['post' => $post])}}" class="btn btn-secondary">Like</a>
+                                @endif
                                 <a href="{{route('post', ['post' => $post])}}" class="btn btn-primary">Read More</a>
                             </div>
                         </div>
