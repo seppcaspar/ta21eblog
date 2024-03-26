@@ -11,7 +11,8 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = ['title', 'body'];
-
+    protected $with = ['images', 'user'];
+    protected $appends = ['snippet'];
     protected function snippet(): Attribute
     {
         return Attribute::make(
