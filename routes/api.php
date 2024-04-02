@@ -22,3 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/posts', [PostController::class, 'index']);
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+Route::delete('/logout', [AuthenticatedSessionController::class, 'destroy']);
