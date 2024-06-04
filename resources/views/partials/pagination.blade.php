@@ -12,6 +12,7 @@
                 {{-- "Three Dots" Separator --}}
                 @if (is_string($element))
                     <button disabled class="join-item btn btn-disabled" aria-disabled="true">{{ $element }}</button>
+
                 @endif
 
                 {{-- Array Of Links --}}
